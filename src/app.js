@@ -10,7 +10,7 @@ function App() {
   const [me, setMe] = useState(null);
   const [myVote, setMyVote] = useState(null);
 
-  const [socket] = useState(() => io.connect('localhost'));
+  const [socket] = useState(() => io.connect('/'));
 
   const [users, setUsers] = useState([]);
   const [votes, setVotes] = useState([]);
