@@ -1,0 +1,21 @@
+.container {
+  width: 20%;
+  height: 70%;
+  overflow-y: scroll;
+}
+
+.user {
+  height: 20%;
+  border: 1px solid #eaeaea;
+  display: flex;
+  justify-content: center;
+  margin: .5rem;
+
+  & > h2 {
+    padding-top: 1rem;
+  }
+
+  &:first-child {
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,26 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.card {
+  display: flex;
+  height: 40%;
+  flex-basis: 25%;
+  border: 1px solid #eaeaea;
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #cecece;
+  }
+
+  &--selected {
+    border: 1px solid #cecece;
+  }
+}
