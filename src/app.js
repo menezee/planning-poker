@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-import { Header, Poker, UserList } from './components';
+import { Header, Poker, UserList, StoryList, InfoBar } from './components';
 import { Actions } from './actions';
 
 import styles from './app.module.scss';
@@ -9,6 +9,7 @@ import styles from './app.module.scss';
 function App() {
   const [me, setMe] = useState(null);
   const [myVote, setMyVote] = useState(null);
+  const [stories, setStories] = useState([]);
 
   const [socket] = useState(() => io.connect('/'));
 
@@ -59,29 +60,37 @@ function App() {
     socket.emit(Actions.FromClient.ADD_VOTE, card);
   };
 
-  const showResult = () => { alert(`Result: ${result}`); };;
+  const setPoints = (points, storyIndex) => {
+    setStories(oldStories => {
+      const newStories = [...oldStories];
+      newStories[storyIndex].points = points;
+      return newStories;
+    });
+  };
+
+  const showResult = () => {
+    alert(`Result: ${result}`);
+    const firstStoryWithoutPoints = stories.findIndex(({ points }) => points === null);
+
+    setPoints(result, firstStoryWithoutPoints);
+  };
+
+  const addStory = newStory => {
+    setStories(oldStories => [...oldStories, newStory]);
+  };
 
   return (
     <>
       <Header addUser={addUser} me={me} />
-      <aside className={styles.count__container}>
-        <div className={styles.count__item}>
-          {
-            votes.length > 0 &&
-            <p>Total votes: {votes.length}</p>
-          }
-        </div>
-        <div className={styles.count__item}>
-          {
-            result !== null &&
-              <button onClick={showResult}>
-                display votes!
-              </button>
-          }
-        </div>
-      </aside>
+      <InfoBar
+        votes={votes}
+        result={result}
+        showResult={showResult}
+        setStory={addStory}
+      />
       <section className={styles.main}>
-        <UserList users={users}/>
+        <UserList users={users} />
+        <StoryList stories={stories} />
         <Poker selectCard={selectCard} selected={myVote} />
       </section>
     </>

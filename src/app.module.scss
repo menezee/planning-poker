@@ -2,17 +2,3 @@
   display: flex;
   height: 60%;
 }
-
-.count {
-  &__container {
-    display: flex;
-    height: 10%;
-  }
-
-  &__item {
-    align-items: center;
-    display: flex;
-    flex-basis: 50%;
-    justify-content: center;
-  }
-}

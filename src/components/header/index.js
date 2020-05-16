@@ -18,19 +18,23 @@ function Header({ addUser, me }) {
   return (
     <header className={styles.header}>
       <h1>cat planning poker</h1>
-      <form className={styles.form}>
-        <input
-          onChange={onChange}
-          placeholder='Name'
-          value={name}
-        />
-        <button onClick={onClick}>
-          Join
-        </button>
-        <p>
-          { me }
-        </p>
-      </form>
+      {
+        me === null ? (
+          <form className={styles.form}>
+            <input
+              onChange={onChange}
+              placeholder='Name'
+              value={name}
+            />
+            <button onClick={onClick}>
+              Join
+            </button>
+          </form>) : (
+          <h1>
+            Hello, { me }
+          </h1>
+        )
+      }
     </header>
   );
 }
