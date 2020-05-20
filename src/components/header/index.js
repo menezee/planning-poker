@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
+import { PlanningContext } from '../../context';
 
 import styles from './header.module.scss';
 
-function Header({ addUser, me }) {
+function Header() {
+  const {
+    addUser,
+    me,
+  } = useContext(PlanningContext);
+
   const [name, setName] = useState('');
 
   const onClick = e => {

@@ -4,7 +4,7 @@ import styles from './send-input.module.scss';
 import sendArrowEmpty from './assets/paper-plane-regular.svg';
 import sendArrowSolid from './assets/paper-plane-solid.svg';
 
-function SendInput({ placeholder, setStory }) {
+function SendInput({ placeholder, addStory }) {
   const [input, setInput] = useState('');
 
   const onChange = e => {
@@ -13,7 +13,7 @@ function SendInput({ placeholder, setStory }) {
 
   const onSubmit = e => {
     e.preventDefault();
-    setStory({ name: input, points: null });
+    addStory({ name: input, points: null });
     setInput('');
   };
 

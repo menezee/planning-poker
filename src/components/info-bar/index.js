@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
-import styles from './info-bar.module.scss';
-import { SendInput } from './subcomponents/send-input';
+import React, { useContext } from 'react';
 
-function InfoBar({ votes, result, showResult, setStory }) {
+import { SendInput } from './subcomponents/send-input';
+import { PlanningContext } from '../../context';
+
+import styles from './info-bar.module.scss';
+
+function InfoBar() {
+  const {
+    votes,
+    result,
+    showResult,
+    addStory,
+  } = useContext(PlanningContext);
+
   return (
     <aside className={styles.container}>
       <section className={styles.container__section}>
-        <SendInput placeholder='Story Name' setStory={setStory} />
+        <SendInput placeholder='Story Name' addStory={addStory} />
       </section>
       <section className={styles.container__section}>
         <div className={styles.container__item}>

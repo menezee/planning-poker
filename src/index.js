@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 
 import App from './app';
 import * as serviceWorker from './serviceWorker';
+import { PlanningContextProvider } from './context';
 
 import './reset.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <PlanningContextProvider>
+      <App />
+    </PlanningContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
